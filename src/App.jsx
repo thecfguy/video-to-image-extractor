@@ -10,7 +10,7 @@ export default function App() {
   const [videoUrl, setVideoUrl] = useState(null)
   const [videoDuration, setVideoDuration] = useState(0)
   const [config, setConfig] = useState({
-    mode: 'count',         // 'count' | 'interval' | 'timestamps' | 'scene' | 'walkthrough'
+    mode: 'walkthrough',   // 'count' | 'interval' | 'timestamps' | 'scene' | 'walkthrough'
     frameCount: 10,
     intervalSec: 2,
     timestamps: '',
@@ -101,22 +101,6 @@ export default function App() {
       ) : (
         <div className="flex-1 flex overflow-hidden min-h-0">
 
-          {/* Config sidebar */}
-          <aside className="w-72 shrink-0 border-r border-gray-800 overflow-y-auto">
-            <div className="p-4">
-              <ConfigPanel
-                config={config}
-                onChange={setConfig}
-                videoDuration={videoDuration}
-                onExtract={handleExtract}
-                extracting={extracting}
-                progress={progress}
-                frameCount={frames.length}
-                extractError={extractError}
-              />
-            </div>
-          </aside>
-
           {/* Main content — video + gallery, independently scrollable */}
           <main className="flex-1 overflow-y-auto">
             <div className="p-6 space-y-6">
@@ -143,6 +127,20 @@ export default function App() {
               )}
             </div>
           </main>
+
+          {/* Config sidebar — right side */}
+          <aside className="w-72 shrink-0 border-l border-gray-800 flex flex-col overflow-hidden">
+            <ConfigPanel
+              config={config}
+              onChange={setConfig}
+              videoDuration={videoDuration}
+              onExtract={handleExtract}
+              extracting={extracting}
+              progress={progress}
+              frameCount={frames.length}
+              extractError={extractError}
+            />
+          </aside>
 
         </div>
       )}

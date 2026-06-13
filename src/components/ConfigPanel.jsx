@@ -58,7 +58,9 @@ export default function ConfigPanel({ config, onChange, videoDuration, onExtract
   const needsQuality = config.format !== 'image/png'
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col h-full">
+    {/* Scrollable settings */}
+    <div className="flex-1 overflow-y-auto min-h-0 p-4 space-y-6">
       <Section title="Extraction Mode">
         <div className="space-y-1.5">
           <div className="grid grid-cols-2 gap-1.5 bg-gray-800 rounded-xl p-1">
@@ -356,56 +358,59 @@ export default function ConfigPanel({ config, onChange, videoDuration, onExtract
         </select>
       </Section>
 
-      <div className="pt-2 space-y-3">
-        <div className="flex items-center justify-between text-xs text-gray-500">
-          <span>Estimated frames</span>
-          <span className="font-semibold text-gray-300">{estimatedFrames}</span>
-        </div>
+    </div>{/* end scrollable settings */}
 
-        {extracting && (
-          <div className="space-y-1.5">
-            <div className="w-full bg-gray-800 rounded-full h-1.5 overflow-hidden">
-              <div
-                className="h-full bg-indigo-500 rounded-full transition-all duration-200"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-            <p className="text-xs text-center text-gray-500">{Math.round(progress)}%</p>
-          </div>
-        )}
-
-        <button
-          onClick={onExtract}
-          disabled={extracting}
-          className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-semibold text-white transition-colors flex items-center justify-center gap-2"
-        >
-          {extracting ? (
-            <>
-              <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-              </svg>
-              Extracting…
-            </>
-          ) : (
-            <>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              Extract Frames
-            </>
-          )}
-        </button>
-
-        {extractError && (
-          <p className="text-xs text-red-400 leading-relaxed">{extractError}</p>
-        )}
-        {frameCount > 0 && !extracting && !extractError && (
-          <p className="text-xs text-center text-gray-500">
-            {frameCount} frame{frameCount !== 1 ? 's' : ''} extracted
-          </p>
-        )}
+    {/* Pinned footer — always visible */}
+    <div className="shrink-0 border-t border-gray-800 p-4 space-y-3">
+      <div className="flex items-center justify-between text-xs text-gray-500">
+        <span>Estimated frames</span>
+        <span className="font-semibold text-gray-300">{estimatedFrames}</span>
       </div>
+
+      {extracting && (
+        <div className="space-y-1.5">
+          <div className="w-full bg-gray-800 rounded-full h-1.5 overflow-hidden">
+            <div
+              className="h-full bg-indigo-500 rounded-full transition-all duration-200"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <p className="text-xs text-center text-gray-500">{Math.round(progress)}%</p>
+        </div>
+      )}
+
+      <button
+        onClick={onExtract}
+        disabled={extracting}
+        className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-semibold text-white transition-colors flex items-center justify-center gap-2"
+      >
+        {extracting ? (
+          <>
+            <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            Extracting…
+          </>
+        ) : (
+          <>
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Extract Frames
+          </>
+        )}
+      </button>
+
+      {extractError && (
+        <p className="text-xs text-red-400 leading-relaxed">{extractError}</p>
+      )}
+      {frameCount > 0 && !extracting && !extractError && (
+        <p className="text-xs text-center text-gray-500">
+          {frameCount} frame{frameCount !== 1 ? 's' : ''} extracted
+        </p>
+      )}
+    </div>
     </div>
   )
 }

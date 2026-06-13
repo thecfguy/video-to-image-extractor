@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2d2f3a transparent;
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d2f3a;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5; /* indigo-600 */
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Filmstrip in lightbox — no scrollbar, drag-scroll feel */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

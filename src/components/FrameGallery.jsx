@@ -152,8 +152,7 @@ function Lightbox({ frames, index, ext, onClose, onNavigate, onDownload }) {
 
       {/* Filmstrip */}
       <div
-        className="shrink-0 h-[72px] border-t border-gray-800 bg-black/60 flex items-center gap-1.5 overflow-x-auto px-3 py-2"
-        style={{ scrollbarWidth: 'none' }}
+        className="scrollbar-none shrink-0 h-[72px] border-t border-gray-800 bg-black/60 flex items-center gap-1.5 overflow-x-auto px-3 py-2"
         onClick={e => e.stopPropagation()}
       >
         {frames.map((f, i) => (
