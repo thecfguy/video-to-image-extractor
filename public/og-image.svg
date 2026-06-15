@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#030712;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Subtle grid lines -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Accent glow blobs -->
+  <circle cx="900" cy="150" r="200" fill="#4f46e5" fill-opacity="0.08"/>
+  <circle cx="200" cy="500" r="150" fill="#7c3aed" fill-opacity="0.06"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)" />
+
+  <!-- App icon container -->
+  <rect x="80" y="200" width="72" height="72" rx="16" fill="#4f46e5"/>
+  <!-- Video camera icon in the container -->
+  <path d="M100 224 L100 248 Q100 252 104 252 L136 252 Q140 252 140 248 L140 224 Q140 220 136 220 L104 220 Q100 220 100 224 Z" fill="white"/>
+  <path d="M140 229 L152 222 Q155 220 155 224 L155 248 Q155 252 152 250 L140 243 Z" fill="white"/>
+
+  <!-- App name -->
+  <text x="168" y="226" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="42" font-weight="700" fill="white" letter-spacing="-1">VideoFrame</text>
+  <text x="168" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="42" font-weight="700" fill="#6366f1" letter-spacing="-1">Extractor</text>
+
+  <!-- Tagline -->
+  <text x="80" y="330" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" font-weight="400" fill="#94a3b8" letter-spacing="0">Extract frames from any video — free, private, runs in your browser</text>
+
+  <!-- Divider -->
+  <rect x="80" y="360" width="1040" height="1" fill="#1e293b"/>
+
+  <!-- Feature badges row -->
+  <!-- Badge 1 -->
+  <rect x="80" y="385" width="190" height="44" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="106" cy="407" r="8" fill="#4f46e5"/>
+  <text x="122" y="412" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" fill="#e2e8f0">5 Extraction Modes</text>
+
+  <!-- Badge 2 -->
+  <rect x="286" y="385" width="190" height="44" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="312" cy="407" r="8" fill="#4f46e5"/>
+  <text x="328" y="412" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" fill="#e2e8f0">MP4, WebM, MOV…</text>
+
+  <!-- Badge 3 -->
+  <rect x="492" y="385" width="190" height="44" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="518" cy="407" r="8" fill="#22c55e"/>
+  <text x="534" y="412" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" fill="#e2e8f0">100% Private</text>
+
+  <!-- Badge 4 -->
+  <rect x="698" y="385" width="190" height="44" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="724" cy="407" r="8" fill="#4f46e5"/>
+  <text x="740" y="412" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" fill="#e2e8f0">JPEG · PNG · WebP</text>
+
+  <!-- Badge 5 -->
+  <rect x="904" y="385" width="215" height="44" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <circle cx="930" cy="407" r="8" fill="#f59e0b"/>
+  <text x="946" y="412" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" fill="#e2e8f0">Scene Detection</text>
+
+  <!-- Mode list -->
+  <text x="80" y="470" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" fill="#475569">By Count  ·  By Interval  ·  Custom Timestamps  ·  Scene Change  ·  Property Walkthrough</text>
+
+  <!-- Bottom strip -->
+  <rect x="0" y="580" width="1200" height="50" fill="#0a0a1a" fill-opacity="0.6"/>
+  <text x="80" y="611" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" fill="#475569">videoextract.thecfguy.com</text>
+  <text x="1120" y="611" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" fill="#4f46e5" text-anchor="end">Free &amp; Open</text>
+</svg>

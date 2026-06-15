@@ -1,0 +1,27 @@
+{
+  "name": "VideoFrame Extractor",
+  "short_name": "FrameExtract",
+  "description": "Extract frames from any video directly in your browser — no uploads, 100% private.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#4f46e5",
+  "lang": "en",
+  "categories": ["productivity", "multimedia", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://videoextract.thecfguy.com/og-image.svg",
+      "type": "image/svg+xml",
+      "sizes": "1200x630",
+      "label": "VideoFrame Extractor main interface"
+    }
+  ]
+}

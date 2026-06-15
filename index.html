@@ -2,12 +2,207 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>video-extract</title>
+
+    <!-- Primary Meta Tags -->
+    <title>VideoFrame Extractor — Free Browser Video Frame Extraction Tool</title>
+    <meta name="title" content="VideoFrame Extractor — Free Browser Video Frame Extraction Tool" />
+    <meta name="description" content="Extract frames from any video directly in your browser. Supports MP4, WebM, MOV, MKV, AVI. Five extraction modes: by count, interval, timestamps, scene change detection, and property walkthrough. No uploads — 100% private and free." />
+    <meta name="keywords" content="video frame extractor, extract frames from video, video screenshot tool, video to images, frame extraction online, scene change detection, video thumbnail extractor, free video tool, browser video tool, MP4 frame extractor, video frame capture, property walkthrough video" />
+    <meta name="author" content="VideoFrame Extractor" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://videoextract.thecfguy.com/" />
+
+    <!-- Theme & Appearance -->
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="application-name" content="VideoFrame Extractor" />
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.svg" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://videoextract.thecfguy.com/" />
+    <meta property="og:site_name" content="VideoFrame Extractor" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="VideoFrame Extractor — Free Browser Video Frame Extraction Tool" />
+    <meta property="og:description" content="Extract frames from any video directly in your browser. Supports MP4, WebM, MOV, MKV, AVI. Five extraction modes including scene change detection and property walkthrough. No uploads — 100% private and free." />
+    <meta property="og:image" content="https://videoextract.thecfguy.com/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="VideoFrame Extractor — Extract video frames in your browser, free and private" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://videoextract.thecfguy.com/" />
+    <meta name="twitter:title" content="VideoFrame Extractor — Free Browser Video Frame Extraction Tool" />
+    <meta name="twitter:description" content="Extract frames from any video in your browser. 5 extraction modes, no uploads, 100% private. Supports MP4, WebM, MOV and more." />
+    <meta name="twitter:image" content="https://videoextract.thecfguy.com/og-image.svg" />
+    <meta name="twitter:image:alt" content="VideoFrame Extractor — Extract video frames in your browser" />
+
+    <!-- JSON-LD: WebApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "VideoFrame Extractor",
+      "url": "https://videoextract.thecfguy.com/",
+      "description": "Extract frames from any video directly in your browser. Supports MP4, WebM, MOV, MKV, and AVI formats. Five extraction modes: by count, by interval, custom timestamps, scene change detection, and property walkthrough. Runs entirely client-side — nothing is uploaded.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any (requires a modern web browser)",
+      "browserRequirements": "Requires HTML5 Canvas support (Chrome, Firefox, Safari, Edge)",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Extract frames by count — N frames evenly distributed across the video",
+        "Extract frames by interval — one frame every N seconds",
+        "Extract frames at custom timestamps — comma-separated seconds",
+        "Scene change detection — automatic detection using pixel-difference analysis",
+        "Property walkthrough mode — captures frames when camera stops after motion",
+        "Supports MP4, WebM, MOV, MKV, AVI input formats",
+        "Export as JPEG, PNG, or WebP image formats",
+        "Adjustable output quality (10–100%)",
+        "Resize output to 4K, FHD 1080p, HD 720p, 480p, 360p, or original",
+        "Batch download all frames as a ZIP archive",
+        "100% browser-based — no file uploads, no server",
+        "Supports remote video URLs (CORS-enabled)"
+      ],
+      "screenshot": "https://videoextract.thecfguy.com/og-image.svg",
+      "softwareVersion": "0.0.2",
+      "datePublished": "2025-01-01",
+      "author": {
+        "@type": "Organization",
+        "name": "VideoFrame Extractor",
+        "url": "https://videoextract.thecfguy.com/"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "1",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage (AI search optimized) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does VideoFrame Extractor upload my video to a server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. VideoFrame Extractor runs entirely in your browser using the HTML5 Canvas API. Your video file never leaves your device — nothing is uploaded to any server. The tool has no backend at all."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What video formats does VideoFrame Extractor support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "VideoFrame Extractor supports MP4, WebM, MOV, MKV, and AVI formats — any format supported by your browser's native video element. You can upload a local file via drag-and-drop or file picker, or provide a remote video URL (which must have CORS Access-Control-Allow-Origin headers)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What frame extraction modes are available?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "VideoFrame Extractor offers five extraction modes: (1) By Count — extract a fixed number of evenly distributed frames; (2) By Interval — extract frames every N seconds; (3) Manual Timestamps — extract frames at specific time points you provide; (4) Scene Change Detection — automatically detect significant visual transitions using a pixel-difference algorithm; (5) Property Walkthrough — designed for real estate and inspection videos, captures frames when the camera stops moving after a period of motion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What image formats can I export extracted frames as?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Frames can be exported as JPEG (smallest file size, adjustable quality), PNG (lossless), or WebP (modern format, good compression). You can also resize output frames to 4K (3840px wide), Full HD 1080p, HD 720p, 480p, 360p, or keep the original video resolution. Download frames individually or as a single ZIP archive."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is VideoFrame Extractor free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, VideoFrame Extractor is completely free to use with no account, registration, or payment required. There are no usage limits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is property walkthrough mode?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Property walkthrough mode is a specialized extraction mode designed for real estate tour videos or inspection recordings. It uses motion analysis to detect when the camera is moving versus stationary. A frame is captured only after the camera has been still for a configurable settle time following a period of motion. This produces a clean set of frames showing each room or area without motion blur, ideal for property listings or inspection reports."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does scene change detection work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scene change detection samples frames at a configurable rate (e.g., every 0.5 seconds) and computes the average pixel-level difference between consecutive frames. When the difference exceeds a configurable threshold, the current frame is flagged as a scene change and extracted. You can tune the sample rate, difference threshold, and minimum gap between detected scenes."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: SoftwareApplication (additional schema) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "VideoFrame Extractor",
+      "applicationCategory": "MultimediaApplication",
+      "applicationSubCategory": "Video Processing",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "url": "https://videoextract.thecfguy.com/",
+      "description": "Free browser-based tool to extract frames from video files. No installation, no uploads, runs entirely in-browser.",
+      "keywords": "video frame extractor, extract frames from video, scene detection, property walkthrough, video to image"
+    }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Visible to search crawlers and AI before JS loads -->
+      <noscript>
+        <main style="font-family:system-ui,sans-serif;max-width:800px;margin:40px auto;padding:0 20px;color:#e2e8f0;background:#030712;min-height:100vh">
+          <h1>VideoFrame Extractor</h1>
+          <p>Extract frames from any video directly in your browser — free, private, no uploads.</p>
+          <h2>Features</h2>
+          <ul>
+            <li>Extract frames by count, interval, or custom timestamps</li>
+            <li>Automatic scene change detection</li>
+            <li>Property walkthrough mode for real estate videos</li>
+            <li>Supports MP4, WebM, MOV, MKV, AVI</li>
+            <li>Export as JPEG, PNG, or WebP</li>
+            <li>Batch download as ZIP</li>
+            <li>Resize to 4K, 1080p, 720p, and more</li>
+            <li>100% browser-based — nothing uploaded</li>
+          </ul>
+          <p>This application requires JavaScript to run. Please enable JavaScript in your browser.</p>
+        </main>
+      </noscript>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

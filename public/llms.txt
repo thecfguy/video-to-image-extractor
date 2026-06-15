@@ -1,0 +1,67 @@
+# VideoFrame Extractor
+
+> A free, browser-based tool to extract frames from any video — no uploads, 100% private.
+
+VideoFrame Extractor is a client-side web application that captures individual frames from video files using the HTML5 Canvas API. All processing happens entirely on the user's device. Videos are never sent to any server.
+
+## What It Does
+
+Given a video file (or a CORS-enabled video URL), VideoFrame Extractor lets users:
+
+- Extract frames at specific timestamps, intervals, or counts
+- Automatically detect scene changes in a video
+- Identify moments when a camera stops after motion (property walkthrough mode)
+- Export individual frames as JPEG, PNG, or WebP images
+- Batch-download all extracted frames as a ZIP archive
+- Resize output frames to multiple standard resolutions
+
+## Extraction Modes
+
+1. **By Count** — Extract exactly N frames, evenly distributed across the full video duration (or a specified time range).
+2. **By Interval** — Extract one frame every N seconds throughout the video.
+3. **Manual Timestamps** — User provides a comma-separated list of times in seconds; one frame is extracted per timestamp.
+4. **Scene Change Detection** — A pixel-difference algorithm samples frames at a configurable rate and flags frames where the visual difference exceeds a threshold. Configurable parameters: sample rate, difference threshold, minimum gap between detected scenes.
+5. **Property Walkthrough** — Designed for real estate / inspection videos. Detects camera motion and captures a frame only after motion stops and the scene has settled for a configurable duration. Parameters: sample rate, motion threshold, settle time, minimum gap between captures.
+
+## Supported Input Formats
+
+MP4, WebM, MOV, MKV, AVI — any format supported by the user's browser `<video>` element.
+
+Input can be:
+- A local file (uploaded via drag-and-drop or file picker)
+- A remote video URL (must have CORS `Access-Control-Allow-Origin` headers)
+
+## Output Options
+
+- **Format**: JPEG (default, smallest size), PNG (lossless), WebP (modern format)
+- **Quality**: 10–100% (applies to JPEG and WebP)
+- **Resize**: Original resolution, 4K (3840px wide), FHD 1080p, HD 720p, 480p, 360p
+- **Download**: Individual frames or all frames bundled as a ZIP file
+
+## Privacy & Security
+
+- No server-side processing. The app has no backend.
+- No analytics, tracking pixels, or third-party scripts.
+- All video data stays on the user's device.
+- Works fully offline once loaded.
+
+## Technology Stack
+
+- React 19, Vite 8, Tailwind CSS 4
+- HTML5 Canvas API for frame capture
+- JSZip for ZIP archive generation
+- FileSaver.js for browser downloads
+- Deployed on Vercel
+
+## Use Cases
+
+- Extracting thumbnails from product demo videos
+- Capturing frames from real estate walkthrough videos for property listings
+- Creating image datasets from video footage
+- Reviewing video content frame-by-frame
+- Generating storyboards from video
+- Extracting key moments from recorded meetings or lectures
+
+## URL
+
+https://videoextract.thecfguy.com/
