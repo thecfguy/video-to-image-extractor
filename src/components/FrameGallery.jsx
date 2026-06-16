@@ -17,18 +17,32 @@ function fmtTime(sec) {
 
 function FrameBadge({ frame }) {
   if (frame.label) {
+    // Quality suffix (Smart mode) or peak-motion suffix (legacy walkthrough)
+    const suffix = frame.quality != null ? ` · ${frame.quality}%`
+      : frame.peakDiff != null ? ` (${frame.peakDiff}%)`
+      : ''
+
+    if (frame.label === 'first') {
+      return <span className="inline-flex px-1.5 py-0.5 rounded text-[10px] font-semibold leading-none bg-gray-700 text-gray-300">start{suffix}</span>
+    }
+    if (frame.label === 'view') {
+      return (
+        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold leading-none bg-violet-600 text-white">
+          <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+          view{suffix}
+        </span>
+      )
+    }
+    // 'stop'
     return (
-      <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold leading-none ${
-        frame.label === 'first' ? 'bg-gray-700 text-gray-300' : 'bg-emerald-600 text-white'
-      }`}>
-        {frame.label === 'first' ? 'start' : (
-          <>
-            <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-            </svg>
-            stopped{frame.peakDiff ? ` (${frame.peakDiff}%)` : ''}
-          </>
-        )}
+      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold leading-none bg-emerald-600 text-white">
+        <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+        </svg>
+        stop{suffix}
       </span>
     )
   }
@@ -226,11 +240,16 @@ export default function FrameGallery({ frames, extracting, progress, config }) {
         <div>
           <h2 className="text-base font-semibold text-white">
             {extracting
-              ? (config.mode === 'walkthrough' ? 'Scanning for stopped frames…' : 'Extracting frames…')
+              ? (config.mode === 'smart' || config.mode === 'walkthrough' ? 'Scanning video…' : 'Extracting frames…')
               : `${frames.length} Frame${frames.length !== 1 ? 's' : ''} Extracted`}
           </h2>
           {extracting && (
             <p className="text-xs text-gray-500 mt-0.5">{Math.round(progress)}% scanned</p>
+          )}
+          {!extracting && frames.length > 0 && config.mode === 'smart' && (
+            <p className="text-xs text-gray-500 mt-0.5">
+              {frames.filter(f => f.label === 'stop').length} stops · {frames.filter(f => f.label === 'view').length} reveals
+            </p>
           )}
           {!extracting && frames.length > 0 && config.mode === 'walkthrough' && (
             <p className="text-xs text-gray-500 mt-0.5">

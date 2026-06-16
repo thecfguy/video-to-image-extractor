@@ -51,7 +51,7 @@ export default function ConfigPanel({ config, onChange, videoDuration, onExtract
       const range = (config.endTime || videoDuration) - config.startTime
       return `≤ ${Math.ceil(range / config.sceneMinGap)}`
     }
-    if (config.mode === 'walkthrough') return 'auto'
+    if (config.mode === 'walkthrough' || config.mode === 'smart') return 'auto'
     return 0
   }, [config, videoDuration])
 
@@ -63,6 +63,40 @@ export default function ConfigPanel({ config, onChange, videoDuration, onExtract
     <div className="flex-1 overflow-y-auto min-h-0 p-4 space-y-6">
       <Section title="Extraction Mode">
         <div className="space-y-1.5">
+          {/* Smart Capture — recommended, primary */}
+          <button
+            onClick={() => set('mode', 'smart')}
+            className={`w-full py-2.5 px-3 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-2 border ${
+              config.mode === 'smart'
+                ? 'bg-violet-600 border-violet-500 text-white'
+                : 'border-violet-700/50 text-violet-300 hover:bg-violet-900/30'
+            }`}
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+            Smart Capture
+            <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${config.mode === 'smart' ? 'bg-white/20' : 'bg-violet-500/20'}`}>BEST</span>
+          </button>
+
+          {/* Property Walkthrough — pure stop detection */}
+          <button
+            onClick={() => set('mode', 'walkthrough')}
+            className={`w-full py-2 px-3 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-2 border ${
+              config.mode === 'walkthrough'
+                ? 'bg-emerald-600 border-emerald-500 text-white'
+                : 'border-emerald-800/50 text-emerald-400 hover:bg-emerald-900/30'
+            }`}
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Property Walkthrough
+          </button>
+
+          {/* Basic modes */}
           <div className="grid grid-cols-2 gap-1.5 bg-gray-800 rounded-xl p-1">
             {[
               { value: 'count', label: 'By Count' },
@@ -83,22 +117,73 @@ export default function ConfigPanel({ config, onChange, videoDuration, onExtract
               </button>
             ))}
           </div>
-          {/* Walkthrough as a full-width highlighted mode */}
-          <button
-            onClick={() => set('mode', 'walkthrough')}
-            className={`w-full py-2 px-3 rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-2 border ${
-              config.mode === 'walkthrough'
-                ? 'bg-emerald-600 border-emerald-500 text-white'
-                : 'border-emerald-800/50 text-emerald-400 hover:bg-emerald-900/30'
-            }`}
-          >
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            Property Walkthrough
-          </button>
         </div>
+
+        {config.mode === 'smart' && (
+          <div className="space-y-4">
+            <div className="rounded-xl bg-violet-950/40 border border-violet-800/40 px-3 py-2.5 text-xs text-violet-300 leading-relaxed">
+              Automatically captures both <span className="font-semibold">pauses</span> (showing a detail) and
+              <span className="font-semibold"> panning reveals</span> (sweeping a room), and always keeps the
+              <span className="font-semibold"> sharpest</span> frame of each moment. Set it and forget it.
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Capture Detail</Label>
+                <span className="text-sm font-semibold text-violet-400">{config.smartNovelty}% change</span>
+              </div>
+              <input
+                type="range" min={8} max={45} step={1}
+                value={config.smartNovelty}
+                onChange={e => set('smartNovelty', Number(e.target.value))}
+                className="w-full accent-violet-500"
+              />
+              <div className="flex justify-between text-xs text-gray-600">
+                <span>8% (more photos)</span><span>45% (fewer)</span>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Min Gap Between Captures</Label>
+                <span className="text-sm font-semibold text-violet-400">{config.smartMinGap}s</span>
+              </div>
+              <input
+                type="range" min={0.5} max={15} step={0.5}
+                value={config.smartMinGap}
+                onChange={e => set('smartMinGap', Number(e.target.value))}
+                className="w-full accent-violet-500"
+              />
+              <div className="flex justify-between text-xs text-gray-600">
+                <span>0.5s</span><span>15s</span>
+              </div>
+            </div>
+
+            <details className="group">
+              <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-300 select-none flex items-center gap-1">
+                <svg className="w-3 h-3 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                Advanced
+              </summary>
+              <div className="space-y-2 mt-3 pl-1">
+                <div className="flex items-center justify-between">
+                  <Label>Scan Rate</Label>
+                  <span className="text-sm font-semibold text-violet-400">every {config.smartSampleRate}s</span>
+                </div>
+                <input
+                  type="range" min={0.1} max={1} step={0.05}
+                  value={config.smartSampleRate}
+                  onChange={e => set('smartSampleRate', Number(e.target.value))}
+                  className="w-full accent-violet-500"
+                />
+                <div className="flex justify-between text-xs text-gray-600">
+                  <span>0.1s (thorough)</span><span>1s (fast)</span>
+                </div>
+              </div>
+            </details>
+          </div>
+        )}
 
         {config.mode === 'count' && (
           <div className="space-y-2">
@@ -279,7 +364,7 @@ export default function ConfigPanel({ config, onChange, videoDuration, onExtract
         )}
       </Section>
 
-      {(config.mode === 'count' || config.mode === 'interval' || config.mode === 'scene' || config.mode === 'walkthrough') && videoDuration > 0 && (
+      {(config.mode === 'count' || config.mode === 'interval' || config.mode === 'scene' || config.mode === 'walkthrough' || config.mode === 'smart') && videoDuration > 0 && (
         <Section title="Time Range">
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1">

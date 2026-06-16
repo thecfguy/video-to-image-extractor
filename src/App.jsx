@@ -10,7 +10,7 @@ export default function App() {
   const [videoUrl, setVideoUrl] = useState(null)
   const [videoDuration, setVideoDuration] = useState(0)
   const [config, setConfig] = useState({
-    mode: 'walkthrough',   // 'count' | 'interval' | 'timestamps' | 'scene' | 'walkthrough'
+    mode: 'smart',         // 'smart' | 'count' | 'interval' | 'timestamps' | 'scene' | 'walkthrough'
     frameCount: 10,
     intervalSec: 2,
     timestamps: '',
@@ -28,6 +28,12 @@ export default function App() {
     walkthroughMotionThreshold: 8,
     walkthroughSettleTime: 0.75,
     walkthroughMinGap: 3,
+    // Smart Capture (recommended): novelty trigger + automatic quality selection
+    smartNovelty: 22,          // % visual change vs last kept frame → new capture
+    smartMinGap: 1.5,          // min seconds between captures
+    smartSampleRate: 0.3,      // probe interval (advanced)
+    smartMotionThreshold: 8,   // % diff = camera moving (for stop detection)
+    smartSettleTime: 0.6,      // stillness needed to confirm a stop
   })
   const [frames, setFrames] = useState([])
   const [extracting, setExtracting] = useState(false)
